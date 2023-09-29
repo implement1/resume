@@ -1,12 +1,25 @@
 import React from "react";
-// Task 4: Add imports here
+import Button from "@mui/material/Button";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import Cvtemplate from "../images/cv-template.svg";
+import Typography from "@mui/material/Typography";
+import "../css/style.css";
+import "../css/reset.css";
 
-const PreviewResume = () => {
-    return (
-        <>
-        {/* Task 4: Add solution here */}
-        </>
-    );
+
+const ShowTemplate = () => {
+return (
+    <div className="template-container">
+        <Button disabled>
+            <RemoveRedEyeIcon sx={{ color: "#4951F5" }} />
+            <Typography sx={{ textTransform: "capitalize", color: "#212121" }}>
+                &nbsp; Template
+            </Typography>
+        </Button>
+        <img src={Cvtemplate} className="template-img" alt="template-img" />
+    </div>
+);
 };
 
-export default PreviewResume;
+
+export default ShowTemplate;

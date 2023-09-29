@@ -1,5 +1,15 @@
 // Task 2: Add imports here
-
+import Grid from "@mui/material/Grid";
+import MultiStepper from "./Components/MultiStepper";
+import Container from "@mui/material/Container";
+import { useSelector } from "react-redux";
+import ShowTemplate from "./Components/ShowTemplate";
+import EmployeeInfo from "./Components/EmployeeInfo";
+import EmployeeExperience from "./Components/EmployeeExperience";
+import EmployeeEducation from "./Components/EmployeeEducation";
+import EmployeeSkills from "./Components/EmployeeSkills";
+import EmployeeInterests from "./Components/EmployeeInterests";
+import Resume from "./Components/Resume";
 // Task 4: Add import here
 
 // Task 6: Add employee info import here
@@ -18,11 +28,22 @@
 function App() {
 
   // Task 2: retreive steps here
+  const { activeStep } = useSelector((store) => store.stepper);
 
   // function to render all the froms
   function renderForms(activeStep) {
     switch (activeStep) {
       // Task 6: Add employee info case here
+      case 0:
+        return <EmployeeInfo />;
+      case 1:
+        return <EmployeeExperience />;
+      case 2:
+        return <EmployeeEducation />; 
+      case 3:
+        return <EmployeeSkills />;  
+      case 4:
+        return <EmployeeInterests />;    
 
       // Task 9: Add employee work case here
 
@@ -39,9 +60,26 @@ function App() {
 
   return (
     <div className="App">
-      Resume Builder
-      {/* Task 2+4+15: add template here.*/}
-
+      {/* final template here.*/}
+      <Container label={'margin="none"'} sx={{ mt: 10, mb: 10 }}>
+        <MultiStepper sx={{ mt: 6 }} />
+        {activeStep < 5 ? (
+          <Grid container>
+            <Grid item md={8} lg={8} sm={12}>
+              {renderForms(activeStep)}
+            </Grid>
+           <Grid item md={4} lg={4} sm={12} xs={12}>
+            <ShowTemplate />
+           </Grid>
+ 
+          </Grid>
+        ) : (
+          <Grid container>
+            <Resume />
+          </Grid>
+        )}
+      </Container>
+  
     </div>
   );
 }
